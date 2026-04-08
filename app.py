@@ -293,7 +293,7 @@ with st.sidebar:
 
     st.divider()
 
-    model_path = st.text_input("Model Path", value="models/best.pt",
+    model_path = st.text_input("Model Path", value="best.pt",
                                 help="Path to your trained best.pt file")
 
     st.markdown("<div style='margin-top:1rem;'></div>", unsafe_allow_html=True)
