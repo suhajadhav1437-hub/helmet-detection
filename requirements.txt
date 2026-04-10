@@ -1,5 +1,15 @@
+<<<<<<< HEAD
 ultralytics
 streamlit
 opencv-python
 Pillow
 numpy
+=======
+streamlit
+ultralytics
+opencv-python-headless
+torch
+torchvision
+pillow
+numpy
+>>>>>>> 76113e39ecbb345117bb0ed21467a130516094a3
