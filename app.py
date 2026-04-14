@@ -1,52 +1,3 @@
-import os
-import sys
-import types
-import numpy as np
-
-# ── Patch cv2 BEFORE ultralytics imports it ────────────────────────────────────
-# Fixes libGL.so.1 error on Streamlit Cloud Python 3.14
-try:
-    import cv2
-except Exception:
-    _cv2 = types.ModuleType("cv2")
-    _cv2.__version__          = "4.8.0"
-    _cv2.COLOR_BGR2RGB        = 4
-    _cv2.COLOR_RGB2BGR        = 4
-    _cv2.COLOR_BGR2GRAY       = 6
-    _cv2.INTER_LINEAR         = 1
-    _cv2.INTER_NEAREST        = 0
-    _cv2.INTER_AREA           = 3
-    _cv2.BORDER_CONSTANT      = 0
-    _cv2.FILLED               = -1
-    _cv2.LINE_AA              = 16
-    _cv2.FONT_HERSHEY_SIMPLEX = 0
-    _cv2.CAP_PROP_FPS         = 5
-    _cv2.CAP_PROP_FRAME_WIDTH = 3
-    _cv2.CAP_PROP_FRAME_HEIGHT= 4
-    _cv2.IMREAD_COLOR         = 1
-
-    def _cvtColor(img, code):
-        if img is None: return img
-        if len(img.shape) == 3 and img.shape[2] == 3:
-            return img[:, :, ::-1].copy()
-        return img
-
-    def _resize(img, size, interpolation=1):
-        from PIL import Image as _PIL
-        return np.array(_PIL.fromarray(img).resize(size))
-
-    def _imencode(ext, img, params=None):
-        from PIL import Image as _PIL
-        import io
-        buf = io.BytesIO()
-        _PIL.fromarray(img).save(buf, format="PNG")
-        return True, np.frombuffer(buf.getvalue(), dtype=np.uint8)
-
-    def _imdecode(buf, flags):
-        from PIL import Image as _PIL
-        import io
-        return np.array(_PIL.open(io.BytesIO(bytes(buf))))
-
 import streamlit as st
 import cv2
 import numpy as np
@@ -55,8 +6,8 @@ from ultralytics import YOLO
 import tempfile
 import os
 
-# Your model loading should be clean
-model = YOLO('best.pt') 
+# Start your app logic here
+model = YOLO('best.pt')
 
 # Rest of your app logic...
 st.set_page_config(page_title="Helmet Detection System", page_icon="⛑️", layout="wide")
