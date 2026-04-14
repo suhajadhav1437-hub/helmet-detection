@@ -51,8 +51,6 @@ except Exception:
     _cv2.resize        = _resize
     _cv2.imencode      = _imencode
     _cv2.imdecode      = _imdecode
-    _cv2.rectangle     = lambda img, pt1, pt2, color, thickness=1, **kw: img
-    _cv2.putText       = lambda img, text, org, f, s, c, **kw: img
     
 import streamlit as st
 import cv2
@@ -61,7 +59,10 @@ from PIL import Image
 from ultralytics import YOLO
 import tempfile
 import os
+import time
 
+# START YOUR APP LOGIC HERE
+model = YOLO('best.pt')
 st.set_page_config(page_title="Helmet Detection System", page_icon="⛑️", layout="wide")
 
 st.markdown("""
