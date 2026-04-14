@@ -55,16 +55,17 @@ except Exception:
     _cv2.putText       = lambda img, text, org, f, s, c, **kw: img
     _cv2.VideoCapture  = lambda *a, **kw: None
     _cv2.imread        = lambda p, f=1: None
-    _cv2.imwrite       = lambda p, img: True
-    _cv2.getTextSize   = lambda t, f, s, th: ((100, 20), 5)
-    sys.modules["cv2"] = _cv2
 
 import streamlit as st
 from ultralytics import YOLO
 from PIL import Image, ImageDraw, ImageFont
 import tempfile
 import time
+import cv2  # Just a normal import
+import sys
+import os
 
+# No manual sys.modules["cv2"] hacks here!
 st.set_page_config(page_title="Helmet Detection System", page_icon="⛑️", layout="wide")
 
 st.markdown("""
