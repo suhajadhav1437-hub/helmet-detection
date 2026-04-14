@@ -47,11 +47,6 @@ except Exception:
         import io
         return np.array(_PIL.open(io.BytesIO(bytes(buf))))
 
-    _cv2.cvtColor      = _cvtColor
-    _cv2.resize        = _resize
-    _cv2.imencode      = _imencode
-    _cv2.imdecode      = _imdecode
-    
 import streamlit as st
 import cv2
 import numpy as np
@@ -59,10 +54,11 @@ from PIL import Image
 from ultralytics import YOLO
 import tempfile
 import os
-import time
 
-# START YOUR APP LOGIC HERE
-model = YOLO('best.pt')
+# Your model loading should be clean
+model = YOLO('best.pt') 
+
+# Rest of your app logic...
 st.set_page_config(page_title="Helmet Detection System", page_icon="⛑️", layout="wide")
 
 st.markdown("""
