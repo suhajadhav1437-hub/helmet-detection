@@ -54,19 +54,13 @@ except Exception:
     _cv2.rectangle     = lambda img, pt1, pt2, color, thickness=1, **kw: img
     _cv2.putText       = lambda img, text, org, f, s, c, **kw: img
     _cv2.VideoCapture  = lambda *a, **kw: None
-    _cv2.imread        = lambda p, f=1: None
-    
+
 import streamlit as st
 import cv2
 import numpy as np
 from PIL import Image
 from ultralytics import YOLO
-import tempfile
-import os
-import time
 
-# Now start your app logic directly
-model = YOLO('best.pt')
 st.set_page_config(page_title="Helmet Detection System", page_icon="⛑️", layout="wide")
 
 st.markdown("""
