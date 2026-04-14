@@ -55,17 +55,18 @@ except Exception:
     _cv2.putText       = lambda img, text, org, f, s, c, **kw: img
     _cv2.VideoCapture  = lambda *a, **kw: None
     _cv2.imread        = lambda p, f=1: None
-
+    
 import streamlit as st
+import cv2
+import numpy as np
+from PIL import Image
 from ultralytics import YOLO
-from PIL import Image, ImageDraw, ImageFont
 import tempfile
-import time
-import cv2  # Just a normal import
-import sys
 import os
+import time
 
-# No manual sys.modules["cv2"] hacks here!
+# Now start your app logic directly
+model = YOLO('best.pt')
 st.set_page_config(page_title="Helmet Detection System", page_icon="⛑️", layout="wide")
 
 st.markdown("""
