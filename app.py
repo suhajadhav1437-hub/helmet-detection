@@ -5,6 +5,7 @@ from PIL import Image
 from ultralytics import YOLO
 import tempfile
 import os
+import time
 
 # Start your app logic here
 model = YOLO('best.pt')
